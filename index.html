@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>芳 紫微斗數 2027 流年</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 暖色主題：米杏紙底、琥珀為主色、朱紅為化忌與提醒、赭褐為輔、橄欖綠為吉 */
+  --ink:#fbf3e8;
+  --panel:#fffaf3;
+  --panel-2:#f7e8d5;
+  --line:#ead6bd;
+  --text:#3a281b;
+  --muted:#86705c;
+  --gold:#b56b1f;
+  --cinnabar:#c2412b;
+  --violet:#a0573a;
+  --jade:#5b8646;
+  --display:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-size:16.5px;line-height:1.85;letter-spacing:.02em}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+a{color:var(--gold)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.35}
+p{margin:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* Header */
+header{padding:56px 0 36px;border-bottom:1px solid var(--line);background:
+  radial-gradient(ellipse 60% 80% at 85% 0%, rgba(236,150,80,.22), transparent 70%),
+  radial-gradient(ellipse 40% 60% at 10% 10%, rgba(194,65,43,.10), transparent 70%)}
+.kicker{color:var(--gold);font-size:14px;letter-spacing:.3em}
+header h1{font-size:clamp(34px,6vw,52px);font-weight:900;margin:10px 0 14px}
+header h1 small{display:block;font-size:.42em;font-weight:500;color:var(--muted);letter-spacing:.12em;margin-top:6px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:22px}
+.fact{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:4px 14px;font-size:14px;color:var(--muted)}
+.fact b{color:var(--text);font-weight:500;margin-left:6px}
+
+section{padding:52px 0 8px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px}
+.sec-no{font-family:var(--display);color:var(--gold);font-size:15px;letter-spacing:.2em;white-space:nowrap}
+.sec-head h2{font-size:clamp(24px,4vw,30px);font-weight:700}
+.lead{color:var(--muted);margin-bottom:22px;max-width:65ch}
+
+/* 命盤 */
+.chart-scroll{overflow-x:auto;padding-bottom:6px}
+.chart{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,auto);gap:4px;min-width:600px}
+.cell{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:8px 10px 6px;min-height:104px;display:flex;flex-direction:column;font-size:13px;line-height:1.5}
+.cell .stars{font-family:var(--display);font-size:16px;font-weight:700;color:var(--text)}
+.cell .minor{color:var(--muted);font-size:12.5px}
+.cell .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:6px;padding-top:6px}
+.cell .pname{color:var(--gold);font-weight:700}
+.cell .age{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.cell .br{color:var(--muted);font-size:12px}
+.hua{display:inline-block;font-size:11px;font-weight:700;padding:0 4px;border-radius:3px;margin-left:2px;vertical-align:2px;font-family:var(--body)}
+.lu{background:var(--jade);color:#fff}
+.quan{background:var(--violet);color:#fff}
+.ke{background:var(--gold);color:#fff}
+.ji{background:var(--cinnabar);color:#fff}
+.cell.ming{border-color:var(--gold);background:linear-gradient(180deg,rgba(181,107,31,.12),var(--panel))}
+.cell.dx{border-color:var(--violet)}
+.cell.ln{box-shadow:inset 0 0 0 1px var(--cinnabar)}
+.center{grid-column:2/4;grid-row:2/4;background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-size:13.5px;color:var(--muted);display:flex;flex-direction:column;justify-content:center;gap:4px}
+.center strong{color:var(--text);font-family:var(--display);font-size:18px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;border:2px solid}
+
+/* 解析段落 */
+.points{display:grid;gap:14px}
+.point{box-shadow:0 1px 2px rgba(120,70,30,.06);background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:18px 22px}
+.point h3{font-size:19px;color:var(--gold);margin-bottom:6px}
+.point p{max-width:68ch}
+.point p+p{margin-top:8px}
+.basis{display:block;margin-top:10px;font-size:13px;color:var(--muted)}
+.basis::before{content:"盤上依據　";color:var(--violet)}
+
+.quote{font-family:var(--display);font-size:clamp(19px,3vw,23px);line-height:1.7;border-left:3px solid var(--violet);padding:4px 0 4px 20px;margin:26px 0 6px;color:var(--text)}
+
+/* 年度總覽 */
+.overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.ov{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
+.ov .tag{font-size:12.5px;color:var(--muted);letter-spacing:.1em}
+.ov h3{font-size:17px;margin:2px 0 6px}
+.ov p{font-size:14.5px;color:var(--muted);line-height:1.75}
+
+/* 年度曲線 */
+.curve{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 14px 8px;margin-top:22px}
+.curve-title{font-size:14px;color:var(--muted);padding:0 6px 6px}
+.curve svg{width:100%;height:auto;display:block}
+
+/* 逐月 */
+.months{display:grid;gap:14px}
+.month{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;display:grid;grid-template-columns:86px 1fr;gap:4px 20px}
+.m-side{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.m-num{font-family:var(--display);font-size:30px;font-weight:900;color:var(--gold);line-height:1.1}
+.m-num small{display:block;font-size:13px;color:var(--muted);font-weight:500;letter-spacing:.15em;font-family:var(--body);margin-top:2px}
+.mood{font-size:12px;padding:1px 9px;border-radius:999px;border:1px solid;white-space:nowrap}
+.mood.up{color:var(--jade);border-color:var(--jade)}
+.mood.mid{color:var(--gold);border-color:var(--gold)}
+.mood.down{color:var(--cinnabar);border-color:var(--cinnabar)}
+.m-body h3{font-size:20px;margin-bottom:8px}
+.m-body p{max-width:66ch}
+.rows{display:grid;gap:4px;margin:10px 0 0;padding:0;list-style:none}
+.rows li{display:grid;grid-template-columns:3.2em 1fr;gap:8px;font-size:15px}
+.rows li b{color:var(--violet);font-weight:500}
+.tip{margin-top:12px;background:var(--panel-2);border-radius:6px;padding:10px 14px;font-size:14.5px}
+.tip b{color:var(--gold);margin-right:6px}
+
+/* 表格 */
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);color:var(--gold);font-weight:700;font-size:14px;letter-spacing:.1em}
+td:first-child{white-space:nowrap;font-weight:700}
+td.good{color:var(--jade)}
+td.warn{color:var(--cinnabar)}
+
+.closing{background:linear-gradient(135deg,rgba(236,150,80,.16),rgba(194,65,43,.06));border:1px solid var(--line);border-radius:12px;padding:28px 28px}
+.closing h2{font-size:24px;margin-bottom:12px}
+.closing p{max-width:66ch}
+.closing p+p{margin-top:10px}
+.closing ol{margin:14px 0 0;padding-left:1.4em}
+.closing li{margin:4px 0}
+
+footer{padding:40px 0 56px;color:var(--muted);font-size:13px;text-align:left}
+
+@media (max-width:560px){
+  body{font-size:16px}
+  .month{grid-template-columns:1fr;padding:18px}
+  .m-side{flex-direction:row;align-items:center;gap:12px}
+  .m-num{font-size:24px}
+  .m-num small{display:inline;margin-left:6px}
+  .point{padding:16px 18px}
+  .closing{padding:22px 20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">紫微斗數 · 命盤解析</div>
+    <h1>芳｜命宮與 2027 流年運勢<small>丁未年 · 農曆逐月詳解</small></h1>
+    <p class="lead" style="margin:0">這份解析分成三個部分：先看妳與生俱來的個性和天賦，再看目前正在走的十年大運，最後是 2027 年一整年、每個月的提醒。</p>
+    <div class="facts">
+      <span class="fact">生辰<b>甲戌年 九月初六 子時</b></span>
+      <span class="fact">陰陽<b>陽女</b></span>
+      <span class="fact">五行局<b>火六局</b></span>
+      <span class="fact">命宮<b>戌</b></span>
+      <span class="fact">身宮<b>戌（命身同宮）</b></span>
+      <span class="fact">命宮主星<b>武曲化科 · 文昌</b></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 命盤 -->
+<section id="chart">
+  <div class="sec-head"><span class="sec-no">壹</span><h2>命盤一覽</h2></div>
+  <div class="chart-scroll">
+    <div class="chart" role="img" aria-label="芳的紫微斗數十二宮命盤">
+      <!-- row 1 -->
+      <div class="cell"><div class="stars">巨門</div><div class="minor">天刑・紅鸞</div><div class="foot"><span class="pname">疾厄</span><span class="age">56–65</span><span class="br">己巳</span></div></div>
+      <div class="cell"><div class="stars">廉貞<span class="hua lu">祿</span> 天相</div><div class="minor">台輔</div><div class="foot"><span class="pname">財帛</span><span class="age">46–55</span><span class="br">庚午</span></div></div>
+      <div class="cell ln"><div class="stars">天梁</div><div class="minor">天鉞</div><div class="foot"><span class="pname">子女</span><span class="age">36–45</span><span class="br">辛未</span></div></div>
+      <div class="cell dx"><div class="stars">七殺</div><div class="minor">天馬</div><div class="foot"><span class="pname">夫妻</span><span class="age">26–35</span><span class="br">壬申</span></div></div>
+      <!-- row 2 -->
+      <div class="cell"><div class="stars">貪狼</div><div class="minor">文曲・天解</div><div class="foot"><span class="pname">遷移</span><span class="age">66–75</span><span class="br">戊辰</span></div></div>
+      <div class="center">
+        <strong>芳 · 陽女 · 火六局</strong>
+        <span>命宮在戌，命身同宮</span>
+        <span>生年四化：廉貞化祿、破軍化權、武曲化科、太陽化忌</span>
+        <span>三方四正六吉星：文昌、文曲、右弼</span>
+        <span>三方四正六煞星：無</span>
+      </div>
+      <div class="cell"><div class="stars">天同</div><div class="minor">八座・天福</div><div class="foot"><span class="pname">兄弟</span><span class="age">16–25</span><span class="br">癸酉</span></div></div>
+      <!-- row 3 -->
+      <div class="cell"><div class="stars">太陰</div><div class="minor">擎羊・鈴星</div><div class="foot"><span class="pname">僕役</span><span class="age">76–85</span><span class="br">丁卯</span></div></div>
+      <div class="cell ming"><div class="stars">武曲<span class="hua ke">科</span> 文昌</div><div class="minor">華蓋</div><div class="foot"><span class="pname">命宮</span><span class="age">6–15</span><span class="br">甲戌</span></div></div>
+      <!-- row 4 -->
+      <div class="cell"><div class="stars">紫微 天府</div><div class="minor">祿存・右弼</div><div class="foot"><span class="pname">事業</span><span class="age">86–95</span><span class="br">丙寅</span></div></div>
+      <div class="cell"><div class="stars">天機</div><div class="minor">天魁・火星・陀羅</div><div class="foot"><span class="pname">田宅</span><span class="age">96–105</span><span class="br">丁丑</span></div></div>
+      <div class="cell"><div class="stars">破軍<span class="hua quan">權</span></div><div class="minor">左輔</div><div class="foot"><span class="pname">福德</span><span class="age">106–115</span><span class="br">丙子</span></div></div>
+      <div class="cell"><div class="stars">太陽<span class="hua ji">忌</span></div><div class="minor">地空・地劫</div><div class="foot"><span class="pname">父母</span><span class="age">116–125</span><span class="br">乙亥</span></div></div>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i class="sw" style="border-color:var(--gold)"></i>本命命宮</span>
+    <span><i class="sw" style="border-color:var(--violet)"></i>目前大限（26–35 歲）</span>
+    <span><i class="sw" style="border-color:var(--cinnabar)"></i>2027 流年命宮</span>
+  </div>
+</section>
+
+<!-- 命宮 -->
+<section id="nature">
+  <div class="sec-head"><span class="sec-no">貳</span><h2>命宮解析：妳是怎樣的人</h2></div>
+  <p class="lead">妳的命宮由武曲星坐守，武曲在戌宮入廟，又帶化科，同宮還有文昌。武曲是財星，也是將星，代表務實、堅毅、說到做到；化科與文昌則為妳加上了專業、名聲和文書考試上的天賦。</p>
+
+  <div class="points">
+    <div class="point">
+      <h3>重情重義，信任來之不易</h3>
+      <p>妳很重情義，也很在意身邊人的感受。妳不會輕易相信別人，總要觀察一段時間，確定對方值得才放心。可是一旦認定了，就會掏心掏肺、全力相挺。</p>
+      <p>這份真誠是妳最珍貴的地方，也是身邊的人願意長久留在妳身旁的原因。只是要記得，妳的好也需要被珍惜，別把力氣花在不懂回應的人身上。</p>
+      <span class="basis">武曲剛直重義；命身同宮，個性專一而固執；戌宮為「天羅地網」，心防較重。</span>
+    </div>
+
+    <div class="point">
+      <h3>人生課題：學會「課題分離」</h3>
+      <p>因為太重感情，妳很容易把別人的問題當成自己的責任，什麼都往身上扛，對家人更是這樣。要常提醒自己：關心不等於承擔。</p>
+      <p>每個人都有自己的人生功課。妳可以陪伴、可以支持，但不需要替別人背負一切。把界線劃清楚，妳會輕鬆很多，和家人的關係也會更健康、更長久。</p>
+      <span class="basis">父母宮太陽化忌，又逢地空地劫，與長輩（尤其父親）之間有需要放下的牽掛；福德宮破軍化權，心裡習慣「我來處理」。</span>
+    </div>
+
+    <div class="point">
+      <h3>事業方向：讓人看見妳本人，價值才會被看見</h3>
+      <p>武曲是財星，所以妳做會計、財務這類跟數字有關的工作很上手。不過基層會計不會是妳做一輩子的位置。命帶化科與文昌，代表妳的價值來自專業形象與個人名聲。比起一直待在幕後做帳，妳更適合走到台前：財務主管、顧問、講師，或任何需要面對人、讓人認識妳的角色。</p>
+      <p>妳的事業宮有紫微、天府同宮，再加上祿存和右弼，這是帶領團隊、管理資源的格局。放長遠來看，往「管理」與「專業品牌」的方向走，最能發揮。</p>
+      <span class="basis">命宮武曲化科＋文昌；事業宮紫微天府（皆廟）＋祿存＋右弼；遷移宮貪狼（廟）＋文曲，主向外發展、靠表現與人脈。</span>
+    </div>
+
+    <div class="point">
+      <h3>多考證照，就是妳的敲門磚</h3>
+      <p>化科與文昌都和學歷、考試、文書有關。如果有文憑，建議多考幾張相關證照。對妳來說，證照不只是一張紙，而是讓別人一眼就信任妳的背書，對未來轉職、升遷、接案都很有幫助。2027 年農曆七月考運特別好，可以提早準備。</p>
+      <span class="basis">命宮化科、文昌同宮，主考試功名與專業聲譽。</span>
+    </div>
+
+    <div class="point">
+      <h3>大器晚成的「武貪格」</h3>
+      <p>妳的命宮武曲與遷移宮貪狼遙遙相對，命理上稱為「武貪格」。古書說「武貪不發少年人」，意思是這種格局的人年輕時要多磨練，三十歲之後才會漸入佳境，越走越順。如果妳現在覺得還在打底、還沒看到成果，那是正常的，妳的好運在後面。</p>
+      <span class="basis">命宮武曲、遷移宮貪狼，武貪對照。</span>
+    </div>
+  </div>
+</section>
+
+<!-- 大限 -->
+<section id="decade">
+  <div class="sec-head"><span class="sec-no">參</span><h2>目前的十年大運：26–35 歲</h2></div>
+  <p class="lead">大運以十年為一段。妳目前走的是申宮大限，大約是 2019 年到 2028 年，正好是本命的夫妻宮。</p>
+
+  <div class="points">
+    <div class="point" style="border-left-color:var(--violet)">
+      <h3>感情與伴侶是這十年的重心</h3>
+      <p>大限命宮落在本命夫妻宮，代表這十年裡，感情和伴侶關係會特別牽動妳的心情與決定。宮中有七殺與天馬，這段時間變動也比較多，可能換環境、換工作或搬家，很多事要靠自己硬闖出來。</p>
+      <p>好消息是，這十年的夫妻宮落在午宮，有廉貞化祿與天相。另一半對妳是有助益的，兩個人吵歸吵，關係本身是有基礎的。</p>
+      <span class="basis">大限命宮申：七殺（廟）、天馬；大限夫妻宮午：廉貞化祿、天相。</span>
+    </div>
+    <div class="point" style="border-left-color:var(--cinnabar)">
+      <h3>這十年容易「什麼都自己扛」</h3>
+      <p>這個大限的天干是壬，讓武曲化忌回到妳的命宮。這代表這十年妳常覺得壓力都在自己身上，在金錢上也容易緊繃、放不下心。這也是為什麼「課題分離」對現在的妳特別重要：學會分擔、學會開口，運勢會跟著鬆開。</p>
+      <span class="basis">大限天干壬：武曲化忌入本命命宮。</span>
+    </div>
+    <div class="point" style="border-left-color:var(--jade)">
+      <h3>2027 是這十年裡有收穫的一年</h3>
+      <p>壬干讓天梁化祿，落在未宮，而未宮正好是 2027 年的流年命宮。也就是說，2027 年有大運的助力撐著，雖然過程有些起伏，整體是能有所收穫的一年。</p>
+      <span class="basis">大限化祿（天梁）入 2027 流年命宮。</span>
+    </div>
+    <div class="point">
+      <h3>預告下一個十年：36–45 歲</h3>
+      <p>2029 年左右會換到未宮大限，坐天梁和天鉞，貴人運明顯轉強，會遇到願意提攜妳的長輩或主管。不過那個大限的辛干讓文昌化忌入命宮，考試、文書、合約要格外細心。所以想考的證照，最好趁這兩三年完成。</p>
+      <span class="basis">下一大限未宮：天梁、天鉞；辛干文昌化忌入本命命宮。</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2027 總論 -->
+<section id="year">
+  <div class="sec-head"><span class="sec-no">肆</span><h2>2027 丁未年 · 全年總論</h2></div>
+  <p class="lead">2027 年的流年命宮與小限都落在未宮，兩者重疊。今年發生的事妳的感受會特別深，好的更好，有起伏時也比較有感。</p>
+
+  <div class="overview">
+    <div class="ov"><div class="tag">整體</div><h3>先蹲後跳</h3><p>上半年職場壓力和感情摩擦較多，下半年考運、貴人運、財運接連到位，越走越順。</p></div>
+    <div class="ov"><div class="tag">感情</div><h3>多溝通，少悶著</h3><p>流年夫妻宮逢巨門化忌，全年口角比較多。問題多半出在溝通方式，不在感情本身。</p></div>
+    <div class="ov"><div class="tag">事業</div><h3>壓力中見機會</h3><p>流年官祿宮有太陽化忌與空劫，跟主管、老闆的磨合是功課；五月適合談加薪，十月貴人多。</p></div>
+    <div class="ov"><div class="tag">財運</div><h3>有進帳，也要守得住</h3><p>流年財帛宮太陰化祿，有收入；但同宮擎羊、鈴星，容易衝動花費。九月、十二月是財運高點。</p></div>
+    <div class="ov"><div class="tag">學習</div><h3>考證照的好年</h3><p>七月考運佳，八月適合閉關研究，正好呼應命宮化科、文昌的天賦。</p></div>
+    <div class="ov"><div class="tag">健康</div><h3>從三月開始動起來</h3><p>建議養成小小的運動習慣。十月做健康檢查，十一月注意感冒與婦科。</p></div>
+  </div>
+
+  <div class="curve">
+    <div class="curve-title">全年運勢起伏（農曆月份，示意）</div>
+    <svg viewBox="0 0 760 200" aria-label="2027 農曆逐月運勢起伏示意圖">
+      <defs>
+        <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#b56b1f" stop-opacity=".35"/>
+          <stop offset="1" stop-color="#b56b1f" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <g stroke="#ead6bd" stroke-width="1">
+        <line x1="40" y1="40" x2="740" y2="40"/>
+        <line x1="40" y1="90" x2="740" y2="90"/>
+        <line x1="40" y1="140" x2="740" y2="140"/>
+      </g>
+      <g fill="#86705c" font-size="12" font-family="Noto Sans TC, sans-serif">
+        <text x="6" y="44">旺</text><text x="6" y="94">平</text><text x="6" y="144">低</text>
+      </g>
+      <!-- values: 1:3.5 2:2.5 3:3.5 4:2 5:4 6:3 7:4.5 8:3 9:4.5 10:4 11:4 12:5  (5→40, 1→160) -->
+      <path d="M60,100 L120,130 L180,100 L240,145 L300,85 L360,115 L420,70 L480,115 L540,70 L600,85 L660,85 L720,40 L720,175 L60,175 Z" fill="url(#fill)"/>
+      <polyline points="60,100 120,130 180,100 240,145 300,85 360,115 420,70 480,115 540,70 600,85 660,85 720,40" fill="none" stroke="#b56b1f" stroke-width="2.5" stroke-linejoin="round"/>
+      <g fill="#fffaf3" stroke="#b56b1f" stroke-width="2">
+        <circle cx="60" cy="100" r="4"/><circle cx="120" cy="130" r="4"/><circle cx="180" cy="100" r="4"/><circle cx="240" cy="145" r="4"/><circle cx="300" cy="85" r="4"/><circle cx="360" cy="115" r="4"/><circle cx="420" cy="70" r="4"/><circle cx="480" cy="115" r="4"/><circle cx="540" cy="70" r="4"/><circle cx="600" cy="85" r="4"/><circle cx="660" cy="85" r="4"/>
+      </g>
+      <circle cx="720" cy="40" r="6" fill="#b56b1f"/>
+      <g fill="#86705c" font-size="12.5" font-family="Noto Sans TC, sans-serif" text-anchor="middle">
+        <text x="60" y="194">一月</text><text x="120" y="194">二月</text><text x="180" y="194">三月</text><text x="240" y="194">四月</text><text x="300" y="194">五月</text><text x="360" y="194">六月</text><text x="420" y="194">七月</text><text x="480" y="194">八月</text><text x="540" y="194">九月</text><text x="600" y="194">十月</text><text x="660" y="194">十一月</text><text x="720" y="194">十二月</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- 逐月 -->
+<section id="months">
+  <div class="sec-head"><span class="sec-no">伍</span><h2>2027 逐月運勢（農曆）</h2></div>
+
+  <div class="months">
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">一月<small>貪狼月</small></div><span class="mood mid">玩樂 · 慎交友</span></div>
+      <div class="m-body">
+        <h3>出去走走，但要挑對朋友</h3>
+        <p>新年第一個月由貪狼星主導，玩心和社交慾望都比較強，很適合出去玩、放鬆心情，也容易認識新朋友。不過熱鬧的場合魚龍混雜，跟不熟或價值觀不合的人同行，容易踩到雷，惹出不必要的麻煩或花冤枉錢。</p>
+        <ul class="rows">
+          <li><b>宜</b><span>旅行、聚會、和信得過的老朋友出遊</span></li>
+          <li><b>留意</b><span>臨時起意的邀約、來路不明的飯局、跟風消費</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>玩得開心的前提是身邊的人可靠。拿不準的局，寧可推掉。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">二月<small>巨門月</small></div><span class="mood down">職場壓力</span></div>
+      <div class="m-body">
+        <h3>工作放寬心，多出去社交唱唱歌</h3>
+        <p>這個月職場比較煩：工作量大，老闆、同事之間也會冒出一些鳥事，人際上容易有誤會和閒話，上班壓力明顯。財運普普，不算差，但也沒有特別的進帳。</p>
+        <p>越是這種時候，越要放寬心，別把公司的事帶回家反覆想。下班後多跟朋友聚聚、去唱唱歌，把悶在心裡的話唱出來，心情會好很多。</p>
+        <ul class="rows">
+          <li><b>工作</b><span>事情多、雜，同事關係需要多一點耐心</span></li>
+          <li><b>財運</b><span>平穩，守住即可</span></li>
+          <li><b>宜</b><span>唱歌、聚會、找朋友吐苦水</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>辦公室的閒話聽聽就好，不轉述、不表態，最能保護自己。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">三月<small>財帛月</small></div><span class="mood mid">工作順 · 防花費</span></div>
+      <div class="m-body">
+        <h3>工作轉順，但口角和花費要小心</h3>
+        <p>好消息是，工作比上個月順很多，事情推得動，成就感回來了。不過這個月跟另一半容易有口角是非，說話多留一點餘地。</p>
+        <p>財務上要注意：這個月容易亂花錢，而且對方也有點亂花。兩個人可以一起約定預算，互相提醒，比各自忍耐有效。</p>
+        <ul class="rows">
+          <li><b>工作</b><span>順利，適合推進卡住的事</span></li>
+          <li><b>感情</b><span>易口角，就事論事、不翻舊帳</span></li>
+          <li><b>財運</b><span>易衝動消費，雙方都要克制</span></li>
+          <li><b>健康</b><span>減肥、調整體態的好月份</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>從這個月開始養成運動習慣。不用激烈，每天散步、拉筋十五分鐘就好，重點是能持續。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">四月<small>天梁月</small></div><span class="mood down">情緒低</span></div>
+      <div class="m-body">
+        <h3>有點 Emo，給自己一點溫柔</h3>
+        <p>這個月心情比較低落。上個月的爭吵和花費在這個月浮上來，又吵架又賠錢，難免悶悶不樂。事業普普通通，但老闆娘或年長女性主管的一些話，可能讓妳很不舒服。</p>
+        <p>這時候別往心裡去，也不要當場硬碰硬。很多話是對方的情緒，不是妳的問題。先放著，過幾天再回頭看，往往就沒那麼在意了。</p>
+        <ul class="rows">
+          <li><b>事業</b><span>平平，少說多做</span></li>
+          <li><b>財運</b><span>有破財的可能，避免借貸與擔保</span></li>
+          <li><b>宜</b><span>延續三月開始的運動，流汗是最好的情緒出口</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>情緒低的時候不做重大決定。先把自己照顧好，事情自然會過去。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">五月<small>七殺月</small></div><span class="mood up">談加薪</span></div>
+      <div class="m-body">
+        <h3>運勢回升，主動爭取的好時機</h3>
+        <p>這個月運勢明顯回升，工作偏順利，表現容易被看見，很適合主動和主管談加薪、爭取福利或更好的職位。家裡也可能給予多一點支持或資助，算是有額外的助力。</p>
+        <ul class="rows">
+          <li><b>工作</b><span>順利，表現被看見</span></li>
+          <li><b>財運</b><span>有加薪機會，家裡也可能有助力</span></li>
+          <li><b>宜</b><span>談條件、爭取資源、提出想法</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>談加薪前，先把這段時間的成果整理成具體數字和事例。有理有據，成功率更高。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">六月<small>天同月</small></div><span class="mood mid">工作佳 · 感情磨合</span></div>
+      <div class="m-body">
+        <h3>工作不錯，感情要學會說出口</h3>
+        <p>這個月爭吵比較多，原因是兩個人的節奏不同：妳習慣悶著，他比較急。一個不說、一個想馬上解決，就容易擦出火花。試著把感受說出來，哪怕只是一句「我現在有點難過，等我一下」。</p>
+        <p>工作運不錯，有些小壓力，但都在可控範圍內。財務上容易亂花錢，這個月也不適合做太大風險的投資。</p>
+        <ul class="rows">
+          <li><b>感情</b><span>溝通節奏不同，主動說出感受</span></li>
+          <li><b>事業</b><span>運勢佳，小壓力可應付</span></li>
+          <li><b>財運</b><span>防衝動消費，不宜高風險投資</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>吵架時先說「我需要一點時間想想」，給彼此緩衝，比冷戰或硬吵都好。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">七月<small>文昌化科月</small></div><span class="mood up">考運 · 外出</span></div>
+      <div class="m-body">
+        <h3>全年最舒服的月份之一</h3>
+        <p>這個月正好走到本命命宮，化科與文昌的力量被引動。外出運很好，有機會就出去踏青、走走，會帶回好心情和好能量。如果有打算考證照或考試，這是非常好的月份。</p>
+        <p>感情與事業都很穩定，沒有什麼大波動，還有機會小有名氣，被更多人看見。唯一要留意的是報復性消費：前幾個月忍住的，這個月特別想犒賞自己，適度就好。</p>
+        <ul class="rows">
+          <li><b>考運</b><span>極佳，適合報名考試、取得證照</span></li>
+          <li><b>感情</b><span>穩定</span></li>
+          <li><b>事業</b><span>穩定，有機會被看見、建立名聲</span></li>
+          <li><b>財運</b><span>小心報復性消費</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>把重要的考試或進修排在這個月，事半功倍。也很適合更新履歷、經營個人專業形象。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">八月<small>空劫月</small></div><span class="mood mid">人緣 · 沉澱</span></div>
+      <div class="m-body">
+        <h3>桃花人緣旺，也是閉關學習的好時間</h3>
+        <p>這個月桃花不錯，包括人緣桃花，人際互動多，容易受歡迎。但跟另一半也容易有口角，要多花心思經營。</p>
+        <p>內在方面，這個月容易懷疑自己，想法比較哲學，會想得很深。不用害怕這種狀態，這其實是很好的沉澱期。如果要研究東西、鑽研專業，這是閉關學習的好時間，專注力和領悟力都很強。</p>
+        <ul class="rows">
+          <li><b>人際</b><span>人緣好，容易受歡迎</span></li>
+          <li><b>感情</b><span>易起口角，多花心思經營</span></li>
+          <li><b>宜</b><span>上課、讀書、研究專業、獨處思考</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>把對自己的疑問化成學習動力。報一門課或讀幾本好書，收穫會比想像中大。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">九月<small>福德月</small></div><span class="mood up">財運 · 顯化</span></div>
+      <div class="m-body">
+        <h3>存下一筆錢，許下清楚的願望</h3>
+        <p>這個月財運不錯，有機會存下一筆錢。但要記得：千萬不能用賭的心態理財，穩穩地存、穩穩地累積才是正道。</p>
+        <p>這也是顯化的大月，心念的力量特別強。越有理念、目標越清楚，錢就越多。很適合去拜拜、向神佛許願，把心中的目標說得具體清楚。</p>
+        <ul class="rows">
+          <li><b>財運</b><span>佳，宜儲蓄，不宜投機</span></li>
+          <li><b>宜</b><span>拜拜許願、寫下目標、規劃理財</span></li>
+          <li><b>忌</b><span>賭博心態、跟風投資</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>把明年想達成的事寫下來，越具體越好，帶著清楚的心意去許願。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">十月<small>天魁月</small></div><span class="mood up">貴人多</span></div>
+      <div class="m-body">
+        <h3>很忙，但貴人會推妳一把</h3>
+        <p>這個月事業很忙，但忙得有價值。感情也還不錯，對方很配合，相處和諧。這個月貴人多，記得回請飲料、表達感謝，好人緣會讓貴人運更旺。</p>
+        <p>關鍵在於有沒有目標：如果妳確定了目標，會被貴人推著快速前進；如果沒有，就只會被事情推著走，忙了半天卻不知道為了什麼。</p>
+        <ul class="rows">
+          <li><b>事業</b><span>忙碌、有進展</span></li>
+          <li><b>感情</b><span>和諧，對方配合</span></li>
+          <li><b>貴人</b><span>多，記得回禮感謝</span></li>
+          <li><b>健康</b><span>手頭寬裕的話，這個月先去做健康檢查</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>延續九月許下的願望，這個月主動出擊，借貴人之力衝刺。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">十一月<small>紫府月</small></div><span class="mood up">享福 · 顧身體</span></div>
+      <div class="m-body">
+        <h3>享受小確幸，照顧好身體</h3>
+        <p>這是享福的月份，生活充滿小確幸，日子過得舒服。不過身體要特別注意，容易有小感冒，也要留意婦科方面的狀況。</p>
+        <ul class="rows">
+          <li><b>運勢</b><span>平順舒適，適合犒賞自己</span></li>
+          <li><b>健康</b><span>防小感冒；婦科有不適要盡早就醫</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>注意保暖、早點休息。如果十月已經檢查過，這個月就能更安心地享受生活。</div>
+      </div>
+    </article>
+
+    <article class="month">
+      <div class="m-side"><div class="m-num">十二月<small>太陰化祿月</small></div><span class="mood up">財運最旺</span></div>
+      <div class="m-body">
+        <h3>財運很好，身心都好</h3>
+        <p>年底迎來財運很好的一個月，錢包飽滿，心情自然很好。上個月的小病痛也好轉了，身體恢復健康，以很好的狀態迎接新的一年。</p>
+        <ul class="rows">
+          <li><b>財運</b><span>全年最佳，有進帳</span></li>
+          <li><b>健康</b><span>恢復良好</span></li>
+          <li><b>宜</b><span>犒賞自己、回顧這一年、規劃 2028</span></li>
+        </ul>
+        <div class="tip"><b>提醒</b>錢進來的時候，先撥一部分存起來，再好好慰勞這一年辛苦的自己。</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 重點表 -->
+<section id="summary">
+  <div class="sec-head"><span class="sec-no">陸</span><h2>年度重點總整理</h2></div>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>面向</th><th>好時機</th><th>要留意</th></tr></thead>
+      <tbody>
+        <tr><td>財運</td><td class="good">五月（加薪）、九月（存錢）、十二月（最旺）</td><td class="warn">三月、六月防亂花錢；四月防破財；不賭、不做高風險投資</td></tr>
+        <tr><td>事業</td><td class="good">三月轉順、五月談加薪、十月貴人多</td><td class="warn">二月、四月職場壓力大，跟老闆、老闆娘的磨合</td></tr>
+        <tr><td>感情</td><td class="good">七月、十月最穩定</td><td class="warn">三、四、六、八月容易口角，多溝通、別悶著</td></tr>
+        <tr><td>學習考試</td><td class="good">七月考運佳、八月適合閉關研究</td><td class="warn">想考的證照，最好在 2028 年前完成</td></tr>
+        <tr><td>健康</td><td class="good">三月開始養成運動習慣，也是減肥好時機</td><td class="warn">十月做健檢；十一月注意感冒與婦科</td></tr>
+        <tr><td>出遊</td><td class="good">一月、七月</td><td class="warn">一月慎選同伴</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="closing">
+  <div class="closing">
+    <h2>寫給芳</h2>
+    <p>2027 年是先蹲後跳的一年。上半年也許會覺得工作卡、感情吵、錢留不住，但這些都是在幫下半年鋪路。到了七月以後，考運、貴人、財運會一個接一個來。</p>
+    <p>今年送妳三件事：</p>
+    <ol>
+      <li><b>劃清界線。</b>關心家人、照顧對方，但別什麼都往自己身上扛。</li>
+      <li><b>說出感受。</b>妳習慣悶著，可是今年的感情功課就是學會開口。</li>
+      <li><b>目標要清楚。</b>目標越明確，貴人推妳的速度就越快。</li>
+    </ol>
+    <p class="quote">妳的好運在後面，而且會越走越順。</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">本解析依紫微斗數命盤推論，供參考與自我覺察之用。健康方面如有不適，請以醫師診斷為準；重大財務決定請審慎評估。</div>
+</footer>
+
+</body>
+</html>
